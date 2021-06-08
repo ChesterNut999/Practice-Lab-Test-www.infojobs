@@ -11,14 +11,24 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
 	
 	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
+	
 	private WebDriver driver;
 	
+	//-----------------------------------------------------------------------------------------
+	
+	//Elementos do MÉTODO "@BaseTests --> @BeforeEach"
 	private By botaoAceitarCookies = By.id("AllowCookiesButton");
 	
+	//-----------------------------------------------------------------------------------------
+
+	//Elementos do MÉTODO "@testContarOpcoesMenu"
 	private By opcoesMenu_V1 = By.xpath("//*[@id='ctl00_cAccess_ulNavigationBar']/li/a");
 	
 	private By opcoesMenu_V2 = By.xpath("//*[@id='ctl00_cAccess_divPanelLogin']/a");
 	
+	//-----------------------------------------------------------------------------------------
+
+	//Elementos do MÉTODO "@testLoginComSucesso_UsuarioLogado"
 	private By botaoSignIn = By.id("ctl00_cAccess_aLogin");
 	
 	private By usuarioLogado = By.cssSelector("#ctl00_cAccess_aSessionCandidate span.js_spanSession");
@@ -27,10 +37,16 @@ public class HomePage {
 	
 	private By NomeCandidato = By.cssSelector(".nameCandidate span#ctl00_phMasterPage_cPerfil_lblName");
 	
+	//-----------------------------------------------------------------------------------------
+	
+	//Elementos do MÉTODO "@testProfile_Candidaturas"
 	private By botaoCandidaturas = By.id("ctl00_cMenu_lnkInscriptions");
 	
 	private By qtdCandidaturasHomePage = By.cssSelector("#ctl00_phMasterPage_cMatchCounter_lnkOpen_EmProceso > span.number");
 	
+	//-----------------------------------------------------------------------------------------
+	
+	//Elementos do MÉTODO "@testBuscarVagas"
 	private By campoBuscarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[1]/input");
 
 	private By botaoProcurarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[3]/button");
@@ -39,6 +55,11 @@ public class HomePage {
 		
 	//-----------------------------------------------------------------------------------------
 
+	//Elementos do MÉTODO "@testEscolherCurso"
+	private By botaoCursos = By.id("ctl00_cMenu_lknCourses");
+		
+	//-----------------------------------------------------------------------------------------
+	
 	//CONSTRUTOR
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -120,5 +141,13 @@ public class HomePage {
 		return new OpportunitiesPage(driver);
 	}
 
+	//-----------------------------------------------------------------------------------------
+	
+	//MÉTODOS DO "@testEscolherCurso"
+	public CursosPage clicarBotaoCursos() {
+		driver.findElement(botaoCursos).click();
+		return new CursosPage(driver);
+	}
+	
 }
 

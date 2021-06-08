@@ -2,12 +2,14 @@ package homepage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 
 import base.BaseTests;
 import pages.ApplicationsCandidatePage;
+import pages.CursosPage;
 import pages.LoginPage;
 import pages.OpportunitiesPage;
 
@@ -61,7 +63,7 @@ public class HomePageTests extends BaseTests {
 		
 	//@APPLICATIONS CANDIDATE TEST
 	@Test
-	public void testProfile_Candidaturas() {
+	public void testProfiltestEscolherCursoe_Candidaturas() {
 		//Validar se o usuário está logado
 		testLoginComSucesso_UsuarioLogado();
 		
@@ -123,4 +125,39 @@ public class HomePageTests extends BaseTests {
 		System.out.println("TESTE FINALIZADO COM SUCESSO!");		
 	}
 	
+	//-----------------------------------------------------------------------------------------
+	
+	//@CURSES PAGE TEST
+	@Test
+	public void testEscolherCurso() {
+		//PARTE 1
+		//Validar se o usuário está logado
+		testLoginComSucesso_UsuarioLogado();
+		
+		CursosPage cursosPage = homePage.clicarBotaoCursos();
+		
+		//Inserir cep e clicar no botão localizar do Modal
+		String cep = "01328010";
+		cursosPage.clicarModalCampoCep(cep);
+		cursosPage.clicarModalBotaoLocalizar();
+		
+		//Pesquisar curso
+		String curso = "gestão comercial";
+		cursosPage.selecionarCampoPesquisarCurso(curso);
+		System.out.println("PESQUISANDO POR CURSOS DE: " + curso);
+		
+		cursosPage.clicarBotaoFiltrar();
+		
+		//Capturar título primeiro curso
+		String cursoPagina_1 = cursosPage.capturarTextoPrimeiroCurso_V1();
+		System.out.println("TÍTULO 1° CURSO: " + cursoPagina_1);
+		
+		cursosPage.clicarLinkPrimeiroCurso();
+		String cursoPagina_2 = cursosPage.capturarTextoPrimeiroCurso_V2();
+		System.out.println("TÍTULO 2° CURSO: " + cursoPagina_2);
+		
+		//Validação
+		assertThat(cursoPagina_1, Is.is(cursoPagina_2));
+		System.out.println("TESTE CONCLUÍDO COM SUCESSO!");
+	}
 }
