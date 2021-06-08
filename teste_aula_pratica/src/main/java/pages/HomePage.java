@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 public class HomePage {
 	
 	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
@@ -14,14 +15,9 @@ public class HomePage {
 	
 	private By botaoAceitarCookies = By.id("AllowCookiesButton");
 	
-	private By menuItens_V1 = By.partialLinkText("divider-vertical js");
-	List<WebElement> listaOpcoesMenu_V1 = new ArrayList<WebElement>();
+	private By opcoesMenu_V1 = By.xpath("//*[@id='ctl00_cAccess_ulNavigationBar']/li/a");
 	
-	private By menuItens_V2 = By.id("aBlog");
-	List<WebElement> listaOpcoesMenu_V2 = new ArrayList<WebElement>();
-	
-	private By menuItens_V3 = By.cssSelector("div.navbar-inner .container .btn-group .btn");
-	List<WebElement> listaOpcoesMenu_V3 = new ArrayList<WebElement>();
+	private By opcoesMenu_V2 = By.xpath("//*[@id='ctl00_cAccess_divPanelLogin']/a");
 	
 	private By botaoSignIn = By.id("ctl00_cAccess_aLogin");
 	
@@ -35,8 +31,12 @@ public class HomePage {
 	
 	private By qtdCandidaturasHomePage = By.cssSelector("#ctl00_phMasterPage_cMatchCounter_lnkOpen_EmProceso > span.number");
 	
-	private By botaoBuscarVagas = By.id("ctl00_cMenu_lnkFindVacancies");
+	private By campoBuscarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[1]/input");
+
+	private By botaoProcurarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[3]/button");
 	
+	private By botaoVisualizacaoSimples = By.id("ctl00_phMasterPage_cGridMode_btnSimple");
+		
 	//-----------------------------------------------------------------------------------------
 
 	//CONSTRUTOR
@@ -53,26 +53,26 @@ public class HomePage {
 	
 	//-----------------------------------------------------------------------------------------
 	
-	//MÉTODOS DO "@Test testContarOpcoesMenu"
+	//MÉTODOS DO "@testContarOpcoesMenu"
 	public int contarOpcoesMenu_V1() {
-		listaOpcoesMenu_V1 = driver.findElements(menuItens_V1);
+		List<WebElement> listaOpcoesMenu_V1 = new ArrayList<WebElement>(driver.findElements(opcoesMenu_V1)); 
 		return listaOpcoesMenu_V1.size();
 	}
 
 	public int contarOpcoesMenu_V2() {
-		listaOpcoesMenu_V2 = driver.findElements(menuItens_V2);
-		return listaOpcoesMenu_V2.size();
-
-	}
-	
-	public int contarOpcoesMenu_V3() {
-		listaOpcoesMenu_V3 = driver.findElements(menuItens_V3);
-		return listaOpcoesMenu_V3.size();
+		//Esta variável tem o valor 2 pois representam a qtd. de links não utilizados
+		int countLinks = 2;
+		
+		List<WebElement> listaOpcoesMenu_V2 = new ArrayList<WebElement>(driver.findElements(opcoesMenu_V2));
+		int countElementosTotal  = listaOpcoesMenu_V2.size();
+		int resultado = countElementosTotal - countLinks;		
+		
+		return resultado;
 	}
 	
 	//-----------------------------------------------------------------------------------------
 	
-	//MÉTODOS DO "@Test testLoginComSucesso_UsuarioLogado"
+	//MÉTODOS DO "@testLoginComSucesso_UsuarioLogado"
 	public LoginPage clicarBotaoSignIn() {
 		driver.findElement(botaoSignIn).click();
 		return new LoginPage(driver);
@@ -106,10 +106,19 @@ public class HomePage {
 	//-----------------------------------------------------------------------------------------
 	
 	//MÉTODOS DO "@testBuscarVagas"
-	public OpportunitiesPage clicarBotaoBuscarVagas() {
-		driver.findElement(botaoBuscarVagas).click();
-		return new OpportunitiesPage(driver);
+	public void clicarEpreencherCampoBuscarVagas(String texto){
+		driver.findElement(campoBuscarVagas).click();		
+		driver.findElement(campoBuscarVagas).sendKeys(texto);
+	}	
+	
+	public void clicarBotaoProcurarVagas() {
+		driver.findElement(botaoProcurarVagas).click();
 	}
 	
+	public OpportunitiesPage clicarBotaoVisualizacaoSimples() {
+		driver.findElement(botaoVisualizacaoSimples).click();
+		return new OpportunitiesPage(driver);
+	}
+
 }
 

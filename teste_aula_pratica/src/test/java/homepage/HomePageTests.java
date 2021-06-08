@@ -16,18 +16,18 @@ public class HomePageTests extends BaseTests {
 	//@COUNT OPTIONS MENU TEST
 	@Test
 	public void testContarItensMenuSuperior() {
-		carregarPaginaInicial();
 
-		assertThat(homePage.contarOpcoesMenu_V1(), is(4));
-		System.out.println("O MENU 1 POSSUI" + homePage.contarOpcoesMenu_V1() + "ELEMENTOS!");
+		//Contar itens menu 1
+		int menu_V1 = homePage.contarOpcoesMenu_V1(); 
+		assertThat(menu_V1, is(5));
+		System.out.println("O MENU 1 POSSUI " + menu_V1 + " ELEMENTOS!");
 		
-		assertThat(homePage.contarOpcoesMenu_V2(), is(1));
-		System.out.println("O MENU 2 POSSUI" + homePage.contarOpcoesMenu_V2() + "ELEMENTOS!");
+		//Contar itens menu 2
+		int menu_V2 = homePage.contarOpcoesMenu_V2();
+		assertThat(menu_V2, is(3));
+		System.out.println("O MENU 2 POSSUI " + menu_V2 + " ELEMENTOS!");
 		
-		assertThat(homePage.contarOpcoesMenu_V3(), is(6));
-		System.out.println("O MENU 3 POSSUI" + homePage.contarOpcoesMenu_V3() + "ELEMENTOS!");
-		
-		System.out.println("TESTE FINALIZADO COM SUCESSO! OS ITENS DO MENU INICIAL FORAM CONTADOS!");
+		System.out.println("TESTE FINALIZADO COM SUCESSO!");
 	}
 	
 	//-----------------------------------------------------------------------------------------
@@ -37,6 +37,9 @@ public class HomePageTests extends BaseTests {
 	public void testLoginComSucesso_UsuarioLogado() {
 		//Clicar no botão Sign In da home page
 		LoginPage loginPage = homePage.clicarBotaoSignIn();
+		
+		//Aceitar notificações
+		
 		
 		//Preencher usuário e senha
 		loginPage.preencherEmail("mauriliocardoso.contato@gmail.com");
@@ -51,6 +54,7 @@ public class HomePageTests extends BaseTests {
 		assertThat(homePage.validarTextoMinhaArea("Minha área"), is (true));
 		assertThat(homePage.validarNomeCandidato("Maurilio Cardoso Gonçalves"), is (true));
 		System.out.println("USUARIO LOGADO COM SUCESSO!");
+		System.out.println("");
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -65,7 +69,7 @@ public class HomePageTests extends BaseTests {
 		//-Int/Variável utilizada para validar/comparar abaixo		
 		int qtdCandidaturasHomePage = homePage.contarQtdCandidaturasHomePage();
 		homePage.contarQtdCandidaturasHomePage();
-		System.out.println("QUANTIDADE CANDIDATURAS HOME PAGE:" + qtdCandidaturasHomePage);
+		System.out.println("QTD. CANDIDATURAS HOME PAGE:" + qtdCandidaturasHomePage);
 		
 		//Clicar no botão Candidaturas
 		ApplicationsCandidatePage applicationsCandidatePage = homePage.clicarBotaoCandidaturas();
@@ -74,12 +78,12 @@ public class HomePageTests extends BaseTests {
 		//-Int/Variável utilizada para validar/comparar abaixo
 		int qtdCandidaturasApplicationsCandidatePage = applicationsCandidatePage.contarQtdCandidaturasApplicationsCandidatePage();
 		applicationsCandidatePage.contarQtdCandidaturasApplicationsCandidatePage();
-		System.out.println("QUANTIDADE CANDIDATURAS APPLICATIONS CANDIDADATE PAGE:" + qtdCandidaturasApplicationsCandidatePage);
+		System.out.println("QTD. CANDIDATURAS APPLICATIONS CANDIDADATE PAGE:" + qtdCandidaturasApplicationsCandidatePage);
 		
 		//Validar/Comparar se a qtd. de candidaturas da Home Page é igual a Applications Candidate Page
 		if (qtdCandidaturasHomePage == qtdCandidaturasApplicationsCandidatePage)
 			assertThat(qtdCandidaturasHomePage, Is.is(qtdCandidaturasApplicationsCandidatePage));
-			System.out.println("TESTE FINALIZADO COM SUCESSO! QUANTIDADE DE CANDIDATURAS IGUAIS!");
+			System.out.println("TESTE FINALIZADO COM SUCESSO!");
 	}
 	
 	//-----------------------------------------------------------------------------------------
@@ -87,32 +91,36 @@ public class HomePageTests extends BaseTests {
 	//@SEARCH OPPORTUNITIES TEST
 	@Test
 	public void testBuscarVagas() {
+		//PARTE 1
 		//Validar se o usuário está logado
 		testLoginComSucesso_UsuarioLogado();
 		
-		//Clicar no botão Buscar Vagas da Home Page
-		OpportunitiesPage opportunitiesPage = homePage.clicarBotaoBuscarVagas();
-		
-		//Pesquisar e acessar uma vaga de emprego
-		opportunitiesPage.clicarBotaoVisualizacaoSimples();
-		
-		//Listar vagas mais recentes
-		//opportunitiesPage.selecionarOpcaoMaisRecentes();
-		
-		//Pesquisar Vagas de emprego
-		String cargo = "Gerente Comercial";
-		opportunitiesPage.infoCampoPesquisarVagas(cargo);
-		opportunitiesPage.clicarBotaoFiltrar();
-		System.out.println("PESQUISANDO POR DE VAGAS: " + cargo.toUpperCase());
-		
-		//Clicar na primeira vaga que aparecer
-		String vaga_1 = opportunitiesPage.selecionarTextoPrimeiraVaga();
-		opportunitiesPage.clicarPrimeiraVaga();
-		System.out.println("SELECTIONANDO VAGA: " + vaga_1);
+		//-----------------------------------------------------------------------------------------
 
-		//Validar informações da vaga de emprego
-				
+		//PARTE 2
+		//Pesquisar vagas de emprego
+		String cargo = "gerente comercial";
+		homePage.clicarEpreencherCampoBuscarVagas(cargo);
+		homePage.clicarBotaoProcurarVagas();
+		System.out.println("PESQUISANDO POR VAGAS DE: " + cargo);
 		
+		//Clicar no botão visualização simples
+		OpportunitiesPage opportunitiesPage = homePage.clicarBotaoVisualizacaoSimples();
+		
+		//Selecionar texto e clicar na primeira vaga que aparecer
+		String vaga_V1 = opportunitiesPage.selecionarTextoPrimeiraVaga_V1();
+		System.out.println("TITULO VAGA 1: " + vaga_V1);
+		opportunitiesPage.clicarLinkPrimeiraVaga();
+
+		//-----------------------------------------------------------------------------------------
+		
+		//PARTE 3
+		//Selectionar text e validar informações da vaga de emprego
+		String vaga_V2 = opportunitiesPage.selecionarTextoPrimeiraVaga_V2(); 
+		System.out.println("TITULO VAGA 2: " + vaga_V2);
+		
+		assertThat(vaga_V1, Is.is(vaga_V2));
+		System.out.println("TESTE FINALIZADO COM SUCESSO!");		
 	}
 	
 }
