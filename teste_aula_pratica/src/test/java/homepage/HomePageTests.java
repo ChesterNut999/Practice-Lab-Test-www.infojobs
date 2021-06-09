@@ -2,7 +2,6 @@ package homepage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
@@ -103,11 +102,14 @@ public class HomePageTests extends BaseTests {
 		//Pesquisar vagas de emprego
 		String cargo = "gerente comercial";
 		homePage.clicarEpreencherCampoBuscarVagas(cargo);
-		homePage.clicarBotaoProcurarVagas();
 		System.out.println("PESQUISANDO POR VAGAS DE: " + cargo);
+
+		OpportunitiesPage opportunitiesPage = homePage.clicarBotaoProcurarVagas();
 		
 		//Clicar no botão visualização simples
-		OpportunitiesPage opportunitiesPage = homePage.clicarBotaoVisualizacaoSimples();
+		opportunitiesPage.clicarBotaoVisualizacaoSimples();
+		opportunitiesPage.ordenarEmpregos();
+		System.out.println("ORDENANDO EMPREGOS POR: " + opportunitiesPage.ordenarEmpregos());
 		
 		//Selecionar texto e clicar na primeira vaga que aparecer
 		String vaga_V1 = opportunitiesPage.selecionarTextoPrimeiraVaga_V1();
@@ -160,4 +162,9 @@ public class HomePageTests extends BaseTests {
 		assertThat(cursoPagina_1, Is.is(cursoPagina_2));
 		System.out.println("TESTE CONCLUÍDO COM SUCESSO!");
 	}
+	
+	//-----------------------------------------------------------------------------------------
+	
+	//@
+	
 }

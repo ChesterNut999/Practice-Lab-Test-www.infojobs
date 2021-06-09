@@ -51,8 +51,6 @@ public class HomePage {
 
 	private By botaoProcurarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[3]/button");
 	
-	private By botaoVisualizacaoSimples = By.id("ctl00_phMasterPage_cGridMode_btnSimple");
-		
 	//-----------------------------------------------------------------------------------------
 
 	//Elementos do MÉTODO "@testEscolherCurso"
@@ -132,15 +130,11 @@ public class HomePage {
 		driver.findElement(campoBuscarVagas).sendKeys(texto);
 	}	
 	
-	public void clicarBotaoProcurarVagas() {
+	public OpportunitiesPage clicarBotaoProcurarVagas() {
 		driver.findElement(botaoProcurarVagas).click();
-	}
-	
-	public OpportunitiesPage clicarBotaoVisualizacaoSimples() {
-		driver.findElement(botaoVisualizacaoSimples).click();
 		return new OpportunitiesPage(driver);
 	}
-
+	
 	//-----------------------------------------------------------------------------------------
 	
 	//MÉTODOS DO "@testEscolherCurso"

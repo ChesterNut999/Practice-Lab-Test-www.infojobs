@@ -65,4 +65,5 @@ public class CursosPage {
 	public String capturarTextoPrimeiroCurso_V2() {
 		return driver.findElement(textoPrimeiroCurso_V2).getText();
 	}
+
 }

@@ -8,6 +8,12 @@ public class OpportunitiesPage {
 	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
 	private WebDriver driver;
 		
+	private By dropDown = By.xpath("//*[@id='ctl00_phMasterPage_cGridMode_divOrder']/div/div");
+	
+	private By opcaoMaisRecentes = By.xpath("//*[@id='js_txtsearch_ul_wrapper']/ul/li[2]/a");
+	
+	private By botaoVisualizacaoSimples = By.id("ctl00_phMasterPage_cGridMode_btnSimple");
+		
 	private By textoPrimeiraVaga_V1 = By.id("ctl00_phMasterPage_cGrid_rptGrid_ctl01_h2Title");
 	
 	private By linkPrimeiraVaga = By.xpath("/html/body/form/section/div/div[1]/section[2]/div[2]/div[2]/div/div[4]/div[2]");
@@ -24,6 +30,16 @@ public class OpportunitiesPage {
 	//-----------------------------------------------------------------------------------------
 
 	//MÉTODOS DO @testBuscarVagas
+	public String ordenarEmpregos() {
+		String maisRecentes = driver.findElement(opcaoMaisRecentes).getText();
+		driver.findElement(dropDown).click();
+		return maisRecentes;
+	}
+
+	public void clicarBotaoVisualizacaoSimples() {
+		driver.findElement(botaoVisualizacaoSimples).click();
+	}
+
 	public String selecionarTextoPrimeiraVaga_V1() {
 		return driver.findElement(textoPrimeiraVaga_V1).getText();
 	}
