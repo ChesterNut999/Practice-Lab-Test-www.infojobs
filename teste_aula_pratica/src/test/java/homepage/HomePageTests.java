@@ -106,9 +106,8 @@ public class HomePageTests extends BaseTests {
 
 		OpportunitiesPage opportunitiesPage = homePage.clicarBotaoProcurarVagas();
 		
-		//Clicar no botão visualização simples
+		//Clicar no botão visualização simples e ordenar empregos por mais recentes
 		opportunitiesPage.clicarBotaoVisualizacaoSimples();
-		opportunitiesPage.ordenarEmpregos();
 		System.out.println("ORDENANDO EMPREGOS POR: " + opportunitiesPage.ordenarEmpregos());
 		
 		//Selecionar texto e clicar na primeira vaga que aparecer
