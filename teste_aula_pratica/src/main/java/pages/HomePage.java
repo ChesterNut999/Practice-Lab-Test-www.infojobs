@@ -46,7 +46,7 @@ public class HomePage {
 	
 	//-----------------------------------------------------------------------------------------
 	
-	//Elementos do MÉTODO "@testBuscarVagas"
+	//Elementos dos MÉTODOS DO CUCUMBER
 	private By campoBuscarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[1]/input");
 
 	private By botaoProcurarVagas = By.xpath("//*[@id='aspnetForm']/div[4]/div[6]/section[1]/div/div/ol/li[3]/button");
@@ -55,7 +55,12 @@ public class HomePage {
 
 	//Elementos do MÉTODO "@testEscolherCurso"
 	private By botaoCursos = By.id("ctl00_cMenu_lknCourses");
-		
+	
+	//-----------------------------------------------------------------------------------------
+
+	//Elementos do MÉTODO "@testEscolherCurso"
+	private By textoBotaoLogin = By.id("ctl00_cAccess_aLogin");
+
 	//-----------------------------------------------------------------------------------------
 	
 	//CONSTRUTOR
@@ -87,6 +92,13 @@ public class HomePage {
 		int resultado = countElementosTotal - countLinks;		
 		
 		return resultado;
+	}
+	
+	public Integer contarQtdItensMenuSuperior() {
+		Integer itensMenu_V1 = contarOpcoesMenu_V1();
+	    Integer itensMenu_V2 = contarOpcoesMenu_V2();
+		Integer qtdItensMenuSuperior = itensMenu_V1 + itensMenu_V2;
+		return qtdItensMenuSuperior;
 	}
 	
 	//-----------------------------------------------------------------------------------------
@@ -141,6 +153,27 @@ public class HomePage {
 	public CursosPage clicarBotaoCursos() {
 		driver.findElement(botaoCursos).click();
 		return new CursosPage(driver);
+	}
+
+	//-----------------------------------------------------------------------------------------
+
+	//MÉTODOS DO CUCUMBER
+	public void carregarPaginaInicial() {
+		driver.get("https://www.infojobs.com.br/");
+	}
+	
+	public String obterTituloPagina() {
+		return driver.getTitle();
+	}
+	
+
+	public boolean estaLogado() {
+		return !"Login".contentEquals(driver.findElement(usuarioLogado).getText());
+	}
+
+	
+	public String capturarTextoBotaoLogin() {
+		return driver.findElement(textoBotaoLogin).getText();
 	}
 	
 }

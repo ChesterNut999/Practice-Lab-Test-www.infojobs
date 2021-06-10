@@ -1,33 +1,32 @@
-package base;
+package cucumbersteps;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import com.google.common.io.Files;
-
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 import pages.HomePage;
 
-public class BaseTests {
-		
-	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
-	private static WebDriver driver;
+public class ContaItensMenuSuperiorCucumberSteps{
 	
-	protected HomePage homePage;
+	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
+	public static WebDriver driver;
+	
+	private HomePage homePage = new HomePage(driver);
 	
 	//-----------------------------------------------------------------------------------------
-
-	//@BeforeAll JUnit
-	@BeforeAll
+	
+	//Before Cucumber
+	@Before
 	public static void inicializar() {
 		
 		//Desativar notificações do Browser
@@ -44,34 +43,36 @@ public class BaseTests {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
-		
-	//-----------------------------------------------------------------------------------------
-
-	//@BeforeEach JUnit
-	@BeforeEach
-	public void carregarPaginaInicial() {
-		//Abre a Home Page do site e clica no botão Aceitar Cookies
-		driver.get("https://www.infojobs.com.br/");
-		homePage = new HomePage(driver);
-		homePage.clicarBotaoCookies();
-	}	
 	
-	public void screenShot(String nomeTeste, String resultado) {
-		var camera = (TakesScreenshot) driver;
-		File capturaTela = camera.getScreenshotAs(OutputType.FILE);
-		try {
-			Files.move(capturaTela, new File("resources/screenshots/"+ nomeTeste + resultado +".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	//-----------------------------------------------------------------------------------------
+	
+	@Dado("que estou na pagina inicial")
+	public void que_estou_na_pagina_inicial() {
+	   homePage.carregarPaginaInicial();
+	   assertThat(homePage.obterTituloPagina(), is("Empregos e Vagas de emprego GRÁTIS | InfoJobs"));
+	}
+
+	@Quando("não estou logado")
+	public void não_estou_logado() {
+	    assertThat(homePage.estaLogado(), is (true));
+	}
+
+	@Entao("visualizo {int} itens disponiveis")
+	public void visualizo_itens_disponiveis(Integer int1) {
+	   assertThat(homePage.contarQtdItensMenuSuperior(), is(int1));
+	}
+
+	@Entao("botao login esta aparecendo")
+	public void botao_login_esta_aparecendo() {
+		assertThat(homePage.capturarTextoBotaoLogin(), is("Login"));
 	}
 	
 	//-----------------------------------------------------------------------------------------
-
-	//@AfterAll JUnit
-	@AfterAll
+	
+	//@After Cucumber
+	@After
 	public static void finalizar() {
 	driver.quit();
 	}
-		
+	
 }
