@@ -40,7 +40,7 @@ public class HomePageTests extends BaseTests {
 		LoginPage loginPage = homePage.clicarBotaoLogin();
 		
 		//Preencher usuário e senha
-		loginPage.preencherEmaileSenha("maurilioteste110@gmail.com", "Teste110");
+		loginPage.preencherEmaileSenha("maurilioteste110@gmail.com", "bZGtI2bwjD");
 		System.out.println("EMAIL E PASSWORD PREENCHIDOS COM SUCESSO!");
 		
 		//Clicar no botão Sign In para logar
@@ -49,7 +49,7 @@ public class HomePageTests extends BaseTests {
 		// Validar se o usuário está logado
 		assertThat(homePage.estaLogado("Olá, Maurilio"), is (true));
 		assertThat(homePage.validarTextoMinhaArea("Minha área"), is (true));
-		assertThat(homePage.validarNomeCandidato("Maurilio Cardoso Gonçalves"), is (true));
+		assertThat(homePage.validarNomeCandidato("Maurilio Teste"), is (true));
 		
 		//Screenshot
 		String nomeTeste = "testLoginComSucesso_UsuarioLogado_";
