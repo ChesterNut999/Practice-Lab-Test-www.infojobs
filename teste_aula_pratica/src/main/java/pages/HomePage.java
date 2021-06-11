@@ -29,9 +29,9 @@ public class HomePage {
 	//-----------------------------------------------------------------------------------------
 
 	//Elementos do MÉTODO "@testLoginComSucesso_UsuarioLogado"
-	private By botaoSignIn = By.id("ctl00_cAccess_aLogin");
+	private By botaoLogin = By.xpath("//*[@id='ctl00_cAccess_aLogin']");
 	
-	private By usuarioLogado = By.cssSelector("#ctl00_cAccess_aSessionCandidate span.js_spanSession");
+	private By usuarioLogado = By.id("ctl00_cAccess_aSessionCandidate");
 	
 	private By textoMinhaArea = By.cssSelector("#ctl00_cMenu_Home .js_myArea");
 	
@@ -104,8 +104,8 @@ public class HomePage {
 	//-----------------------------------------------------------------------------------------
 	
 	//MÉTODOS DO "@testLoginComSucesso_UsuarioLogado"
-	public LoginPage clicarBotaoSignIn() {
-		driver.findElement(botaoSignIn).click();
+	public LoginPage clicarBotaoLogin() {
+		driver.findElement(botaoLogin).click();
 		return new LoginPage(driver);
 	}
 
@@ -156,8 +156,11 @@ public class HomePage {
 	}
 
 	//-----------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------
 
 	//MÉTODOS DO CUCUMBER
+	//contar_itens_menu_superior
 	public void carregarPaginaInicial() {
 		driver.get("https://www.infojobs.com.br/");
 	}
@@ -166,12 +169,11 @@ public class HomePage {
 		return driver.getTitle();
 	}
 	
-
-	public boolean estaLogado() {
+	//login_com_sucesso_usuario_logado
+	public boolean nao_EstaLogado() {
 		return !"Login".contentEquals(driver.findElement(usuarioLogado).getText());
 	}
 
-	
 	public String capturarTextoBotaoLogin() {
 		return driver.findElement(textoBotaoLogin).getText();
 	}

@@ -16,7 +16,7 @@ public class HomePageTests extends BaseTests {
 	
 	//@COUNT OPTIONS MENU TEST
 	@Test
-	public void testContarItensMenuSuperior() {
+	public void test_ContarItensMenuSuperior() {
 
 		//Contar itens menu 1
 		int menuCompleto= homePage.contarQtdItensMenuSuperior(); 
@@ -35,13 +35,12 @@ public class HomePageTests extends BaseTests {
 	
 	//@LOGIN TEST
 	@Test
-	public void testLoginComSucesso_UsuarioLogado() {
+	public void test_LoginComSucesso_UsuarioLogado() {
 		//Clicar no botão Sign In da home page
-		LoginPage loginPage = homePage.clicarBotaoSignIn();
+		LoginPage loginPage = homePage.clicarBotaoLogin();
 		
 		//Preencher usuário e senha
-		loginPage.preencherEmail("mauriliocardoso.contato@gmail.com");
-		loginPage.preencherPassword("Inf#2021");
+		loginPage.preencherEmaileSenha("maurilioteste110@gmail.com", "Teste110");
 		System.out.println("EMAIL E PASSWORD PREENCHIDOS COM SUCESSO!");
 		
 		//Clicar no botão Sign In para logar
@@ -65,9 +64,9 @@ public class HomePageTests extends BaseTests {
 		
 	//@APPLICATIONS CANDIDATE TEST
 	@Test
-	public void testProfiltestEscolherCursoe_Candidaturas() {
+	public void test_ProfileEscolherCursoEcandidaturas() {
 		//Validar se o usuário está logado
-		testLoginComSucesso_UsuarioLogado();
+		test_LoginComSucesso_UsuarioLogado();
 		
 		//--Contar Candidaturas da Home Page
 		//-Int/Variável utilizada para validar/comparar abaixo		
@@ -102,10 +101,10 @@ public class HomePageTests extends BaseTests {
 	
 	//@SEARCH OPPORTUNITIES TEST
 	@Test
-	public void testBuscarVagas() {
+	public void test_BuscarVagas() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		testLoginComSucesso_UsuarioLogado();
+		test_LoginComSucesso_UsuarioLogado();
 		
 		//-----------------------------------------------------------------------------------------
 
@@ -147,10 +146,10 @@ public class HomePageTests extends BaseTests {
 	
 	//@CURSES PAGE TEST
 	@Test
-	public void testEscolherCurso() {
+	public void test_EscolherCurso() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		testLoginComSucesso_UsuarioLogado();
+		test_LoginComSucesso_UsuarioLogado();
 		
 		CursosPage cursosPage = homePage.clicarBotaoCursos();
 		
@@ -186,7 +185,6 @@ public class HomePageTests extends BaseTests {
 	}
 	
 	//-----------------------------------------------------------------------------------------
-	
-	
+		
 	
 }

@@ -1,14 +1,15 @@
 package cucumbersteps;
 
-import java.time.Duration;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+
+import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import base.BaseTests;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
@@ -16,10 +17,10 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.HomePage;
 
-public class ContaItensMenuSuperiorCucumberSteps{
+public class CucumberSteps_ContaItensMenuSuperior extends BaseTests{
 	
 	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
-	public static WebDriver driver;
+	private static WebDriver driver;
 	
 	private HomePage homePage = new HomePage(driver);
 	
@@ -27,6 +28,7 @@ public class ContaItensMenuSuperiorCucumberSteps{
 	
 	//Before Cucumber
 	@Before
+	
 	public static void inicializar() {
 		
 		//Desativar notificações do Browser
@@ -54,7 +56,7 @@ public class ContaItensMenuSuperiorCucumberSteps{
 
 	@Quando("não estou logado")
 	public void não_estou_logado() {
-	    assertThat(homePage.estaLogado(), is (true));
+	    assertThat(homePage.nao_EstaLogado(), is (true));
 	}
 
 	@Entao("visualizo {int} itens disponiveis")
@@ -74,5 +76,5 @@ public class ContaItensMenuSuperiorCucumberSteps{
 	public static void finalizar() {
 	driver.quit();
 	}
-	
+
 }

@@ -24,12 +24,9 @@ public class LoginPage {
 	//-----------------------------------------------------------------------------------------
 	
 	//MÉTODOS DO "@Test testLoginComSucesso_UsuarioLogado"
-	public void preencherEmail(String texto) {
-		driver.findElement(email).sendKeys(texto);
-	}
-	
-	public void preencherPassword(String texto) {
-		driver.findElement(password).sendKeys(texto);
+	public void preencherEmaileSenha(String texto1, String texto2) {
+		driver.findElement(email).sendKeys(texto1);
+		driver.findElement(password).sendKeys(texto2);
 	}
 	
 	public void clicarBotaoSignIn() {
