@@ -24,7 +24,6 @@ public class CucumberSteps_ContaItensMenuSuperior {
 	private HomePage homePage = new HomePage(driver);
 
 	// -----------------------------------------------------------------------------------------
-
 	// Before Cucumber
 	@Before
 
@@ -42,22 +41,20 @@ public class CucumberSteps_ContaItensMenuSuperior {
 
 		// Maximizar browser e define o tempo de espera máximo para cada acesso aos
 		// objetos do drive
-		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
 	// -----------------------------------------------------------------------------------------
 	// CENARIO
-	@Dado("que estou na pagina inicial")
-	public void que_estou_na_pagina_inicial() {
+	@Dado("que estou na home page")
+	public void que_estou_na_home_page() {
 		homePage.carregarPaginaInicial();
-		homePage.clicarBotaoCookies();
 		assertThat(homePage.obterTituloPagina(), is("Empregos e Vagas de emprego GRÁTIS | InfoJobs"));
 	}
 
-	@Quando("não estou logado")
-	public void não_estou_logado() {
-		assertThat(homePage.nao_EstaLogado("Login"), is(false));
+	@Quando("nao estou logado")
+	public void nao_estou_logado() {
+		assertThat(homePage.nao_EstaLogado(), is(true));
 	}
 
 	@Entao("visualizo {int} itens disponiveis")
@@ -65,11 +62,11 @@ public class CucumberSteps_ContaItensMenuSuperior {
 		assertThat(homePage.contarQtdItensMenuSuperior(), is(int1));
 	}
 
-	@Entao("botao login esta aparecendo")
-	public void botao_login_esta_aparecendo() {
+	@Entao("valido se o botao {string} esta aparecendo")
+	public void valido_se_o_botao_esta_aparecendo(String string) {
 		assertThat(homePage.capturarTextoBotaoLogin(), is("Login"));
 	}
-
+		
 	// -----------------------------------------------------------------------------------------
 
 	// @After Cucumber

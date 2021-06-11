@@ -57,7 +57,12 @@ public class CucumberSteps_LoginComSucessoUsuarioLogado {
 		homePage.clicarBotaoCookies();
 		assertThat(homePage.obterTituloPagina(), is("Empregos e Vagas de emprego GRÁTIS | InfoJobs"));
 	}
-
+	
+	@Quando("não estou logado")
+	public void não_estou_logado() {
+		assertThat(homePage.nao_EstaLogado(), is(true));
+	}
+	
 	@Entao("devo clicar no botao Login")
 	public LoginPage devo_clicar_no_botao_login() {
 	    homePage.clicarBotaoLogin();

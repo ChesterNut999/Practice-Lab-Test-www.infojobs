@@ -169,8 +169,8 @@ public class HomePage {
 		return driver.getTitle();
 	}
 	
-	public boolean nao_EstaLogado(String texto) {
-		return "Login".contentEquals(capturarTextoBotaoLogin());
+	public boolean nao_EstaLogado() {
+		return !"Login".contentEquals(driver.findElement(usuarioLogado).getText());
 	}
 	
 	public String capturarTextoBotaoLogin() {
