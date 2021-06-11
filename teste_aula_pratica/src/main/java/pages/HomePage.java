@@ -160,7 +160,7 @@ public class HomePage {
 	//-----------------------------------------------------------------------------------------
 
 	//MÉTODOS DO CUCUMBER
-	//contar_itens_menu_superior
+	
 	public void carregarPaginaInicial() {
 		driver.get("https://www.infojobs.com.br/");
 	}
@@ -169,11 +169,10 @@ public class HomePage {
 		return driver.getTitle();
 	}
 	
-	//login_com_sucesso_usuario_logado
-	public boolean nao_EstaLogado() {
-		return !"Login".contentEquals(driver.findElement(usuarioLogado).getText());
+	public boolean nao_EstaLogado(String texto) {
+		return "Login".contentEquals(capturarTextoBotaoLogin());
 	}
-
+	
 	public String capturarTextoBotaoLogin() {
 		return driver.findElement(textoBotaoLogin).getText();
 	}

@@ -6,18 +6,12 @@ Funcionalidade: validar se o usuario esta logado
   e com as minhas informações entrar no sistema
   e validar o acesso
 
-  Cenario: com usuario e senha ja cadastrados no sistema, devo clicar no botao login
-    Dado que estou na pagina inicial
-    Quando nao estou logado
+  Cenario: com usuario e senha ja cadastrados no sistema, devo logar no sistema e validar meu acesso
+    Dado que estou na Home Page
     Entao devo clicar no botao Login
-
-  Cenario: devo efetuar login
-    Dado que estou na página de login
-    Quando nao estou logado
-    Entao devo preencher os campos "E-mail" E "Senha"
-    E clicar no botao signin
-
-  Cenario: devo validar se o signin foi efetuado com sucesso
-    Dado que estou na pagina do candidato
-    Quando a frase "Olá, Maurilio" aparece na tela
-    Entao devo validar os campos "Minha área" E "Nome do candidato"
+    Quando eu estiver na página de login
+    Entao devo preencher os campos e-mail "maurilioteste110@gmail.com" E senha "bZGtI2bwjD"
+    Entao clicar no botao signin
+    Quando eu estiver na pagina do candidato
+    E item "Olá, Maurilio" estiver na tela
+    Entao devo validar os campos "Minha área" E nome do candidato "Maurilio Teste"

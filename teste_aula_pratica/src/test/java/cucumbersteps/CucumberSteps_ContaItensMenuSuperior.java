@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import base.BaseTests;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
@@ -17,64 +16,66 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.HomePage;
 
-public class CucumberSteps_ContaItensMenuSuperior extends BaseTests{
-	
-	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
+public class CucumberSteps_ContaItensMenuSuperior {
+
+	// MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
 	private static WebDriver driver;
-	
+
 	private HomePage homePage = new HomePage(driver);
-	
-	//-----------------------------------------------------------------------------------------
-	
-	//Before Cucumber
+
+	// -----------------------------------------------------------------------------------------
+
+	// Before Cucumber
 	@Before
-	
+
 	public static void inicializar() {
-		
-		//Desativar notificações do Browser
+
+		// Desativar notificações do Browser
 		ChromeOptions browserOptions = new ChromeOptions();
 		browserOptions.addArguments("--disable-notifications");
-		
-		//Monta/ Indica/ Passa o local do construtor
+
+		// Monta/ Indica/ Passa o local do construtor
 		System.setProperty("webdriver.chrome.driver", "//usr//local//share//chromedriver");
-		
-		//Configura o construtor passando as opções previamente configuradas
+
+		// Configura o construtor passando as opções previamente configuradas
 		driver = new ChromeDriver(browserOptions);
-				
-		//Maximizar browser e define o tempo de espera máximo para cada acesso aos objetos do drive
+
+		// Maximizar browser e define o tempo de espera máximo para cada acesso aos
+		// objetos do drive
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
-	
-	//-----------------------------------------------------------------------------------------
-	
+
+	// -----------------------------------------------------------------------------------------
+	// CENARIO
 	@Dado("que estou na pagina inicial")
 	public void que_estou_na_pagina_inicial() {
-	   homePage.carregarPaginaInicial();
-	   assertThat(homePage.obterTituloPagina(), is("Empregos e Vagas de emprego GRÁTIS | InfoJobs"));
+		homePage.carregarPaginaInicial();
+		homePage.clicarBotaoCookies();
+		assertThat(homePage.obterTituloPagina(), is("Empregos e Vagas de emprego GRÁTIS | InfoJobs"));
 	}
 
 	@Quando("não estou logado")
 	public void não_estou_logado() {
-	    assertThat(homePage.nao_EstaLogado(), is (true));
+		assertThat(homePage.nao_EstaLogado("Login"), is(false));
 	}
 
 	@Entao("visualizo {int} itens disponiveis")
 	public void visualizo_itens_disponiveis(Integer int1) {
-	   assertThat(homePage.contarQtdItensMenuSuperior(), is(int1));
+		assertThat(homePage.contarQtdItensMenuSuperior(), is(int1));
 	}
 
 	@Entao("botao login esta aparecendo")
 	public void botao_login_esta_aparecendo() {
 		assertThat(homePage.capturarTextoBotaoLogin(), is("Login"));
 	}
-	
-	//-----------------------------------------------------------------------------------------
-	
-	//@After Cucumber
+
+	// -----------------------------------------------------------------------------------------
+
+	// @After Cucumber
 	@After
 	public static void finalizar() {
-	driver.quit();
+		driver.quit();
 	}
 
 }

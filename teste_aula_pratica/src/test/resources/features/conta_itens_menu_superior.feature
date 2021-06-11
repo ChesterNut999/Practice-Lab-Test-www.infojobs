@@ -6,6 +6,5 @@ Funcionalidade: Contar itens menu superior
 
   Cenario: Deve mostrar 8 itens no menu superior da pagina inicial
     Dado que estou na pagina inicial
-    Quando nao estou logado
     Entao visualizo 8 itens disponiveis
     E botao login esta aparecendo
