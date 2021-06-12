@@ -6,17 +6,17 @@ import static org.hamcrest.Matchers.is;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 
-import base.BaseTests;
+import base.BaseJunitTests;
 import pages.ApplicationsCandidatePage;
 import pages.CursosPage;
 import pages.LoginPage;
 import pages.OpportunitiesPage;
 
-public class HomePageTests extends BaseTests {
+public class HomePageTests extends BaseJunitTests {
 	
 	//@COUNT OPTIONS MENU TEST
 	@Test
-	public void test_ContarItensMenuSuperior() {
+	public void test_ValidarItensMenuSuperior() {
 
 		//Contar itens menu 1
 		int menuCompleto= homePage.contarQtdItensMenuSuperior(); 
@@ -35,7 +35,7 @@ public class HomePageTests extends BaseTests {
 	
 	//@LOGIN TEST
 	@Test
-	public void test_LoginComSucesso_UsuarioLogado() {
+	public void test_ValidarUsuarioLogado() {
 		//Clicar no botão Sign In da home page
 		LoginPage loginPage = homePage.clicarBotaoLogin();
 		
@@ -64,9 +64,9 @@ public class HomePageTests extends BaseTests {
 		
 	//@APPLICATIONS CANDIDATE TEST
 	@Test
-	public void test_ProfileEscolherCursoEcandidaturas() {
+	public void test_ValidarPerfilCandidaturasEcursos() {
 		//Validar se o usuário está logado
-		test_LoginComSucesso_UsuarioLogado();
+		test_ValidarUsuarioLogado();
 		
 		//--Contar Candidaturas da Home Page
 		//-Int/Variável utilizada para validar/comparar abaixo		
@@ -101,10 +101,10 @@ public class HomePageTests extends BaseTests {
 	
 	//@SEARCH OPPORTUNITIES TEST
 	@Test
-	public void test_BuscarVagas() {
+	public void test_ValidarBuscarVagas() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		test_LoginComSucesso_UsuarioLogado();
+		test_ValidarUsuarioLogado();
 		
 		//-----------------------------------------------------------------------------------------
 
@@ -146,10 +146,10 @@ public class HomePageTests extends BaseTests {
 	
 	//@CURSES PAGE TEST
 	@Test
-	public void test_EscolherCurso() {
+	public void test_ValidarEscolherCurso() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		test_LoginComSucesso_UsuarioLogado();
+		test_ValidarUsuarioLogado();
 		
 		CursosPage cursosPage = homePage.clicarBotaoCursos();
 		

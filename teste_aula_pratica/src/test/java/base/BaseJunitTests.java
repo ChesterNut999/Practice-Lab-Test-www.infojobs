@@ -17,7 +17,7 @@ import com.google.common.io.Files;
 
 import pages.HomePage;
 
-public class BaseTests {
+public class BaseJunitTests {
 		
 	//MAPEAMENTO DE ELEMENTOS (APONTAMENTOS)
 	private static WebDriver driver;
@@ -60,7 +60,7 @@ public class BaseTests {
 		var camera = (TakesScreenshot) driver;
 		File capturaTela = camera.getScreenshotAs(OutputType.FILE);
 		try {
-			Files.move(capturaTela, new File("resources/screenshots/"+ nomeTeste + resultado +".png"));
+			Files.move(capturaTela, new File("resources/screenshots_tests/"+ nomeTeste + resultado +".png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

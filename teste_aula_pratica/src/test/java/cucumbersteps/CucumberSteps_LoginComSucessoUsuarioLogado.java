@@ -27,7 +27,6 @@ public class CucumberSteps_LoginComSucessoUsuarioLogado {
 
 	
 	// -----------------------------------------------------------------------------------------
-
 	// Before Cucumber
 	@Before
 

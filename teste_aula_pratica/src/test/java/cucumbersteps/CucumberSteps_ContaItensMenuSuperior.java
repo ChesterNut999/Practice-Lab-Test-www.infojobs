@@ -26,7 +26,6 @@ public class CucumberSteps_ContaItensMenuSuperior {
 	// -----------------------------------------------------------------------------------------
 	// Before Cucumber
 	@Before
-
 	public static void inicializar() {
 
 		// Desativar notificações do Browser
@@ -68,7 +67,6 @@ public class CucumberSteps_ContaItensMenuSuperior {
 	}
 		
 	// -----------------------------------------------------------------------------------------
-
 	// @After Cucumber
 	@After
 	public static void finalizar() {
