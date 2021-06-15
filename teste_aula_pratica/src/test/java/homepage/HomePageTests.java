@@ -16,15 +16,15 @@ public class HomePageTests extends BaseJunitTests {
 	
 	//@COUNT OPTIONS MENU TEST
 	@Test
-	public void test_ValidarItensMenuSuperior() {
+	public void test_1_ValidarQtdItensMenuSuperior() {
 
 		//Contar itens menu 1
 		int menuCompleto= homePage.contarQtdItensMenuSuperior(); 
 		assertThat(menuCompleto, Is.is(8));
-		System.out.println("O MENU COMPLETO POSSUI " + menuCompleto + " ITENS!");
+		System.out.println("O MENU SUPERIOR POSSUI " + menuCompleto + " ITENS!");
 		
 		//Screenshot
-		String nomeTeste = "testContarItensMenuSuperior_";
+		String nomeTeste = "test_1_ValidarQtdItensMenuSuperior_";
 		String resultado = "ok_";
 		screenShot(nomeTeste, resultado);
 		
@@ -35,7 +35,7 @@ public class HomePageTests extends BaseJunitTests {
 	
 	//@LOGIN TEST
 	@Test
-	public void test_ValidarUsuarioLogado() {
+	public void test_2_ValidarUsuarioLogado() {
 		//Clicar no botão Sign In da home page
 		LoginPage loginPage = homePage.clicarBotaoLogin();
 		
@@ -52,7 +52,7 @@ public class HomePageTests extends BaseJunitTests {
 		assertThat(homePage.validarNomeCandidato("Maurilio Teste"), is (true));
 		
 		//Screenshot
-		String nomeTeste = "testLoginComSucesso_UsuarioLogado_";
+		String nomeTeste = "test_2_ValidarUsuarioLogado_";
 		String resultado = "ok_";
 		screenShot(nomeTeste, resultado);
 		
@@ -64,9 +64,9 @@ public class HomePageTests extends BaseJunitTests {
 		
 	//@APPLICATIONS CANDIDATE TEST
 	@Test
-	public void test_ValidarPerfilCandidaturasEcursos() {
+	public void test_3_ValidarPerfilCandidaturasEcursos() {
 		//Validar se o usuário está logado
-		test_ValidarUsuarioLogado();
+		test_2_ValidarUsuarioLogado();
 		
 		//--Contar Candidaturas da Home Page
 		//-Int/Variável utilizada para validar/comparar abaixo		
@@ -89,7 +89,7 @@ public class HomePageTests extends BaseJunitTests {
 			assertThat(qtdCandidaturasHomePage, Is.is(qtdCandidaturasApplicationsCandidatePage));
 			
 			// Screenshot
-			String nomeTeste = "testProfiltestEscolherCursoe_Candidaturas_";
+			String nomeTeste = "test_3_ValidarPerfilCandidaturasEcursos_";
 			String resultado = "ok_";
 			screenShot(nomeTeste, resultado);
 			
@@ -101,10 +101,10 @@ public class HomePageTests extends BaseJunitTests {
 	
 	//@SEARCH OPPORTUNITIES TEST
 	@Test
-	public void test_ValidarBuscarVagas() {
+	public void test_4_ValidarBuscarVagas() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		test_ValidarUsuarioLogado();
+		test_2_ValidarUsuarioLogado();
 		
 		//-----------------------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ public class HomePageTests extends BaseJunitTests {
 		assertThat(vaga_V1, Is.is(vaga_V2));
 		
 		//Screenshot
-		String nomeTeste = "testBuscarVagas_";
+		String nomeTeste = "test_4_ValidarBuscarVagas_";
 		String resultado = "ok_";
 		screenShot(nomeTeste, resultado);
 
@@ -146,10 +146,10 @@ public class HomePageTests extends BaseJunitTests {
 	
 	//@CURSES PAGE TEST
 	@Test
-	public void test_ValidarEscolherCurso() {
+	public void test_5_ValidarEscolherCurso() {
 		//PARTE 1
 		//Validar se o usuário está logado
-		test_ValidarUsuarioLogado();
+		test_2_ValidarUsuarioLogado();
 		
 		CursosPage cursosPage = homePage.clicarBotaoCursos();
 		
@@ -177,7 +177,7 @@ public class HomePageTests extends BaseJunitTests {
 		assertThat(cursoPagina_1, Is.is(cursoPagina_2));
 		
 		//Screenshot
-		String nomeTeste = "testEscolherCurso_";
+		String nomeTeste = "test_5_ValidarEscolherCurso_";
 		String resultado = "ok_";
 		screenShot(nomeTeste, resultado);
 		
